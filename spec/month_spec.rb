@@ -49,4 +49,34 @@ RSpec.describe Month do
       Month.new(12, 2012).name.should == "December"
     end
   end
+
+  context ".month_length" do
+    it "should show January has 31 days in the month" do
+      Month.new(01,2012).month_length.should == 31
+    end
+    it "should show February has 29 days in the month" do
+      Month.new(02,2012).month_length.should == 29
+    end
+    it "should show February has 28 days in the month" do
+      Month.new(02,2013).month_length.should == 28
+    end
+    it "should show April has 30 days in the month" do
+      Month.new(04,2012).month_length.should == 30
+    end
+  end
+
+  context ".is_leap_year?" do
+    it "should return true for the year 2000" do
+      Month.new(02, 2000).is_leap_year?.should == true
+    end
+    it "should return false for the year 3000" do
+      Month.new(02, 3000).is_leap_year?.should == false
+    end
+    it "should return false for the year 1800" do
+      Month.new(02, 1800).is_leap_year?.should == false
+    end
+    it "should return true for the year 2016" do
+      Month.new(02, 2016).is_leap_year?.should == true
+    end
+  end
 end
