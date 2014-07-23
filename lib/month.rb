@@ -14,7 +14,7 @@ class Month
   end
 
   def header
-    "#{name} #{@year}".center(20)
+    "#{name} #{@year}".center(20).rstrip
   end
 
   def month_layout
@@ -59,7 +59,7 @@ class Month
         end
       end
       week = week.join(" ")
-      output << week + "\n"
+      output << week.rstrip + "\n"
     end
     output
   end
