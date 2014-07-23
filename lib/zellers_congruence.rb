@@ -12,5 +12,4 @@ class ZellersCongruence
 
     h = (q + ((13*(m+1)/5)) + k + (k/4) + (j/4) + (5*j)) % 7
   end
-  
 end

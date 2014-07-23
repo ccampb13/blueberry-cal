@@ -1,7 +1,7 @@
 RSpec.describe "Cal's full month integration" do
   it "should correctly print July 2017" do
     expected = <<EOS
-     July 2017
+      July 2017
 Su Mo Tu We Th Fr Sa
                    1
  2  3  4  5  6  7  8

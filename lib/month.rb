@@ -1,6 +1,8 @@
+require_relative './zellers_congruence'
+
 class Month
   MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-  attr_reader :month, :year
+  attr_accessor :month, :year
 
   def initialize(month, year)
     @month = month
@@ -12,22 +14,56 @@ class Month
   end
 
   def header
-    "#{name} #{@year}".center(20).rstrip
+    "#{name} #{@year}".center(20)
+  end
+
+  def month_layout
+    month_array = [[], [], [], [], [], []]
+    month_array = week_array(month_array)
+    month_array
+  end
+
+  def week_array(array)
+    d = 1
+    index = ZellersCongruence.calculate(@month, @year)
+    x = 7 - index
+    x.times do
+      array[0].insert(index, d)
+      index += 1
+      d +=1
+    end
+    num = 1
+    5.times do
+      7.times do
+        if d <= month_length
+          array[num].push(d)
+          d += 1
+        else
+          array[num].push(nil)
+        end
+      end
+      num += 1
+    end
+    array
   end
 
   def to_s
     output = header
     output << "\nSu Mo Tu We Th Fr Sa\n"
-    output << <<EOS
-                   1
- 2  3  4  5  6  7  8
- 9 10 11 12 13 14 15
-16 17 18 19 20 21 22
-23 24 25 26 27 28 29
-30 31
-EOS
+    month_layout.each do |week|
+      week.map! do |day|
+        if day == nil
+          day = "  "
+        else
+          day < 10 ? " " + day.inspect : day
+        end
+      end
+      week = week.join(" ")
+      output << week + "\n"
+    end
     output
   end
+
 
   def month_length
     leap_year = is_leap_year?
@@ -43,7 +79,7 @@ EOS
     elsif month == 2 && !leap_year
       return 28
     else
-      raise NoMonthError, "Month was not found"
+      raise Error, "Month was not found"
     end
   end
 
