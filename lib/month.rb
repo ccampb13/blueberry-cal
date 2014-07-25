@@ -1,4 +1,4 @@
-require_relative './zellers_congruence'
+require_relative 'zellers_congruence'
 
 class Month
   MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -78,8 +78,8 @@ class Month
       return 29
     elsif month == 2 && !leap_year
       return 28
-    else
-      raise Error, "Month was not found"
+    # else
+    #   raise NameError, "Month was not found"
     end
   end
 
