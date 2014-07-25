@@ -78,8 +78,8 @@ class Month
       return 29
     elsif month == 2 && !leap_year
       return 28
-    # else
-    #   raise NameError, "Month was not found"
+    else
+      raise NoMonthError, "Month was not found"
     end
   end
 

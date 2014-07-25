@@ -1,4 +1,4 @@
-RSpec.describe "Cal's full month integration" do
+RSpec.describe "Cal's full year integration" do
   it "should correctly print July 2017" do
     expected = <<EOS
      July 2017
